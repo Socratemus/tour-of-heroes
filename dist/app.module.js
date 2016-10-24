@@ -8,14 +8,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+// Observable class extensions
+require('rxjs/add/observable/of');
+require('rxjs/add/observable/throw');
+// Observable operators
+require('rxjs/add/operator/catch');
+require('rxjs/add/operator/debounceTime');
+require('rxjs/add/operator/distinctUntilChanged');
+require('rxjs/add/operator/do');
+require('rxjs/add/operator/filter');
+require('rxjs/add/operator/map');
+require('rxjs/add/operator/switchMap');
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
+var http_1 = require('@angular/http');
+// Imports for loading & configuring the in-memory web api
+var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
+var in_memory_data_service_1 = require('./in-memory-data.service');
 var app_component_1 = require('./app.component');
 var dashboard_component_1 = require('./dashboard.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var heroes_component_1 = require('./heroes.component');
 var hero_service_1 = require('./hero.service');
+var hero_search_component_1 = require('./hero-search.component');
 var app_routing_module_1 = require('./app-routing.module');
 var AppModule = (function () {
     function AppModule() {
@@ -25,13 +41,16 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
+                http_1.HttpModule,
+                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
                 app_routing_module_1.AppRoutingModule
             ],
             declarations: [
                 app_component_1.AppComponent,
                 dashboard_component_1.DashboardComponent,
                 heroes_component_1.HeroesComponent,
-                hero_detail_component_1.HeroDetailComponent
+                hero_detail_component_1.HeroDetailComponent,
+                hero_search_component_1.HeroSearchComponent
             ],
             providers: [
                 hero_service_1.HeroService
